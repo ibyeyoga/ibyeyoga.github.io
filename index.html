@@ -318,8 +318,13 @@
       
         
           
-            <h1 id="Mac中使用brew安装php7失败的解决方案"><a href="#Mac中使用brew安装php7失败的解决方案" class="headerlink" title="Mac中使用brew安装php7失败的解决方案"></a>Mac中使用brew安装php7失败的解决方案</h1><h3 id="emsp-emsp-之前写PHP一直使用mac自带的PHP5-6，看到PHP7的一些特性之后决定尝一下鲜，百度了安装教程之后，发现我使用brew按照教程安装php7还是会出现问题。"><a href="#emsp-emsp-之前写PHP一直使用mac自带的PHP5-6，看到PHP7的一些特性之后决定尝一下鲜，百度了安装教程之后，发现我使用brew按照教程安装php7还是会出现问题。" class="headerlink" title="&emsp;&emsp;之前写PHP一直使用mac自带的PHP5.6，看到PHP7的一些特性之后决定尝一下鲜，百度了安装教程之后，发现我使用brew按照教程安装php7还是会出现问题。"></a>&emsp;&emsp;之前写PHP一直使用mac自带的PHP5.6，看到PHP7的一些特性之后决定尝一下鲜，百度了安装教程之后，发现我使用brew按照教程安装php7还是会出现问题。</h3><h3 id="emsp-emsp-虽然是几个月前的笔记，我总结了之后，放到博客上，供自己或网友做一个参考。"><a href="#emsp-emsp-虽然是几个月前的笔记，我总结了之后，放到博客上，供自己或网友做一个参考。" class="headerlink" title="&emsp;&emsp;虽然是几个月前的笔记，我总结了之后，放到博客上，供自己或网友做一个参考。"></a>&emsp;&emsp;虽然是几个月前的笔记，我总结了之后，放到博客上，供自己或网友做一个参考。</h3><h2 id="情况1：没有libphp7-so"><a href="#情况1：没有libphp7-so" class="headerlink" title="情况1：没有libphp7.so"></a>情况1：没有libphp7.so</h2><h4 id="安装过程中，可能会提示缺少libphp7-so"><a href="#安装过程中，可能会提示缺少libphp7-so" class="headerlink" title="安装过程中，可能会提示缺少libphp7.so"></a>安装过程中，可能会提示缺少libphp7.so</h4><p>解决方法：xcode-select –install，之后再执行brew install php70即可，如果还不行，将xcode升级到8.1</p>
-<h2 id="情况2：安装完之后apache不解释php文件"><a href="#情况2：安装完之后apache不解释php文件" class="headerlink" title="情况2：安装完之后apache不解释php文件"></a>情况2：安装完之后apache不解释php文件</h2><h4 id="其实这两种情况经常同时出现，因为xcode版本的问题导致libphp7-so在安装的过程中没有安装好，这样的话配置apache的时候就会解释不了php文件了。"><a href="#其实这两种情况经常同时出现，因为xcode版本的问题导致libphp7-so在安装的过程中没有安装好，这样的话配置apache的时候就会解释不了php文件了。" class="headerlink" title="其实这两种情况经常同时出现，因为xcode版本的问题导致libphp7.so在安装的过程中没有安装好，这样的话配置apache的时候就会解释不了php文件了。"></a>其实这两种情况经常同时出现，因为xcode版本的问题导致libphp7.so在安装的过程中没有安装好，这样的话配置apache的时候就会解释不了php文件了。</h4><p>解决方法：打开httpd.conf(mac自带apache路径/etc/apache2/httpd.conf)，<br>添加LoadModule php7_module /usr/local/Cellar/php70/7.0.14_7/libexec/apache2/libphp7.so，<br>之后在AddType application/x-gzip .gz .tgz的下一行加上AddType application/x-httpd-php .php</p>
+            <h1 id="Mac中使用brew安装php7失败的解决方案"><a href="#Mac中使用brew安装php7失败的解决方案" class="headerlink" title="Mac中使用brew安装php7失败的解决方案"></a>Mac中使用brew安装php7失败的解决方案</h1><p>​    之前写PHP一直使用mac自带的PHP5.6，看到PHP7的一些特性之后决定尝一下鲜，百度了安装教程之后，发现我使用brew按照教程安装php7还是会出现问题。</p>
+<p>​    虽然是几个月前的笔记，我总结了之后，放到博客上，供自己或网友做一个参考。</p>
+<h2 id="情况1：没有libphp7-so"><a href="#情况1：没有libphp7-so" class="headerlink" title="情况1：没有libphp7.so"></a>情况1：没有libphp7.so</h2><p>​    安装过程中，可能会提示缺少libphp7.so</p>
+<p>​    解决方法：</p>
+<p>​    xcode-select –install，之后再执行brew install php70即可，如果还不行，将xcode升级到8.1</p>
+<h2 id="情况2：安装完之后apache不解释php文件"><a href="#情况2：安装完之后apache不解释php文件" class="headerlink" title="情况2：安装完之后apache不解释php文件"></a>情况2：安装完之后apache不解释php文件</h2><p>​    其实这两种情况经常同时出现，因为xcode版本的问题导致libphp7.so在安装的过程中没有安装好，这样的话配置apache的时候就会解释不了php文件了。</p>
+<p>​    解决方法：打开httpd.conf(mac自带apache路径/etc/apache2/httpd.conf)，<br>添加LoadModule php7_module /usr/local/Cellar/php70/7.0.14_7/libexec/apache2/libphp7.so，<br>之后在AddType application/x-gzip .gz .tgz的下一行加上AddType application/x-httpd-php .php</p>
 
           
         
