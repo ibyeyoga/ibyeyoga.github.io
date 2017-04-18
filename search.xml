@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[Mac中使用brew安装php7失败的解决方案]]></title>
+      <url>/2017/03/27/Mac%E4%B8%AD%E4%BD%BF%E7%94%A8brew%E5%AE%89%E8%A3%85php7%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      <content type="html"><![CDATA[<h1 id="Mac中使用brew安装php7失败的解决方案"><a href="#Mac中使用brew安装php7失败的解决方案" class="headerlink" title="Mac中使用brew安装php7失败的解决方案"></a>Mac中使用brew安装php7失败的解决方案</h1><p>​    之前写PHP一直使用mac自带的PHP5.6，看到PHP7的一些特性之后决定尝一下鲜，百度了安装教程之后，发现我使用brew按照教程安装php7还是会出现问题。</p>
+<p>​    虽然是几个月前的笔记，我总结了之后，放到博客上，供自己或网友做一个参考。</p>
+<h2 id="情况1：没有libphp7-so"><a href="#情况1：没有libphp7-so" class="headerlink" title="情况1：没有libphp7.so"></a>情况1：没有libphp7.so</h2><p>​    安装过程中，可能会提示缺少libphp7.so</p>
+<p>​    解决方法：</p>
+<p>​    xcode-select –install，之后再执行brew install php70即可，如果还不行，将xcode升级到8.1</p>
+<h2 id="情况2：安装完之后apache不解释php文件"><a href="#情况2：安装完之后apache不解释php文件" class="headerlink" title="情况2：安装完之后apache不解释php文件"></a>情况2：安装完之后apache不解释php文件</h2><p>​    其实这两种情况经常同时出现，因为xcode版本的问题导致libphp7.so在安装的过程中没有安装好，这样的话配置apache的时候就会解释不了php文件了。</p>
+<p>​    解决方法：打开httpd.conf(mac自带apache路径/etc/apache2/httpd.conf)，<br>添加LoadModule php7_module /usr/local/Cellar/php70/7.0.14_7/libexec/apache2/libphp7.so，<br>之后在AddType application/x-gzip .gz .tgz的下一行加上AddType application/x-httpd-php .php</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 疑难杂症,PHP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>/2017/03/18/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+      
+        
+    </entry>
+    
+  
+  
+</search>
