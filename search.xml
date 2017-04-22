@@ -3,6 +3,39 @@
   
     
     <entry>
+      <title><![CDATA[Markdown如何做到首行缩进]]></title>
+      <url>/2017/04/22/Markdown%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%A6%96%E8%A1%8C%E7%BC%A9%E8%BF%9B/</url>
+      <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　最近开始用Markdown写文章，发现Markdown默认并不支持首行缩进，很多时候，我的习惯都是在每一个自然段的开头空两格。如下图所示：</p>
+<p><img src="http://oivwa6p90.bkt.clouddn.com/1492863613.png" width="539" height="173"></p>
+<p>　　我试过使用<code>tab</code>按键，发现文章发布之后，并没有达到预期效果。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
+<li><p>修改显示markdown文章的页面的CSS样式</p>
+<p>如：text-indent: 2em;</p>
+</li>
+<li><p>使用一定数量的<code>&amp;nbsp;</code>来达到顶格的效果</p>
+</li>
+<li><p>将输入法的符号设置成全角，然后再行首打两个空格</p>
+</li>
+</ol>
+<p><img src="http://oivwa6p90.bkt.clouddn.com/1492864487.png" width="230" height="165"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技巧 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> — markdown — 其难杂症 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[iOS7之后的同步请求解决方案]]></title>
       <url>/2017/04/22/iOS7%E4%B9%8B%E5%90%8E%E7%9A%84%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
       <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>​ 　　iOS7以前，iOS的网络请求一般是通过<code>NSURLConnection sendSynchronousRequest</code>来处理，但是iOS7之后，<code>NSURLConnection</code>已经被苹果废除了，取而代之的是<code>NSURLSession</code>，而<code>NSURLSession</code>并没有提供像<code>sendSynchronousRequest</code>这种同步请求方法，那么如果实际项目中需要用到同步请求，要怎样解决呢？</p>
