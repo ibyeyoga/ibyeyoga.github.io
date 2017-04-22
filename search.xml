@@ -3,6 +3,36 @@
   
     
     <entry>
+      <title><![CDATA[Hexo添加站内搜索功能]]></title>
+      <url>/2017/04/22/Hexo%E6%B7%BB%E5%8A%A0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
+      <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>　　今天的主角是<code>hexo-generator-search</code>，这个插件可以帮助我们实现Hexo的站内搜索功能，而且<code>hexo-generator-search</code>安装很简单，只需要一行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-generator-search --save</div></pre></td></tr></table></figure>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>　　安装完<code>hexo-generator-search</code>之后就可以进行配置了，我们可以打开博客目录的<code>_config.yml</code>文件进行配置，</p>
+<p>　　在<code>_config.yml</code>文件中添加下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">search:</div><div class="line">  path: search.xml</div><div class="line">  field: post</div></pre></td></tr></table></figure>
+<p>　　注意：安装了Next主题，需要添加代码的是Next主题里面的<code>_config.yml</code> ，即：<code>博客根目录/themes/next/_config.yml</code>还需要将配置项<code>local_search</code>的<code>enable</code>值设置为<code>true</code>。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>　　该插件会在你执行<code>hexo g</code>的时候，生成搜索索引。当你上传到服务器之后就可以使用了。</p>
+<p><img src="http://oivwa6p90.bkt.clouddn.com/1492865826.png" width="938" height="430"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技巧 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> 站内搜索 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Markdown如何做到首行缩进]]></title>
       <url>/2017/04/22/Markdown%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%A6%96%E8%A1%8C%E7%BC%A9%E8%BF%9B/</url>
       <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　最近开始用Markdown写文章，发现Markdown默认并不支持首行缩进，很多时候，我的习惯都是在每一个自然段的开头空两格。如下图所示：</p>
