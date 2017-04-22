@@ -3,34 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[iOS7之后的同步请求解决方案]]></title>
-      <url>/2017/04/22/iOS7%E4%B9%8B%E5%90%8E%E7%9A%84%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-      <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>​    iOS7以前，iOS的网络请求一般是通过<code>NSURLConnection sendSynchronousRequest</code>来处理，但是iOS7之后，<code>NSURLConnection</code>已经被苹果废除了，取而代之的是<code>NSURLSession</code>，而<code>NSURLSession</code>并没有提供像<code>sendSynchronousRequest</code>这种同步请求方法，那么如果实际项目中需要用到同步请求，要怎样解决呢？</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>​    下面是我的一个解决方案，就是使用GDC信号量。</p>
-<h2 id="主角semaphore"><a href="#主角semaphore" class="headerlink" title="主角semaphore"></a>主角semaphore</h2><p>​    dispatch_semaphore_create　　　创建一个semaphore对象<br>　　dispatch_semaphore_signal　　　 发送一个信号<br>　　dispatch_semaphore_wait　　　　等待信号</p>
-<p>​    dispatch_semaphore_create需要传入一个整型值作为参数，我们可以理解为信号的总量，dispatch_semaphore_signal是发送一个信号，自然会让信号总量加1，dispatch_semaphore_wait等待信号，当信号总量少于0的时候就会一直等待，否则就可以正常的执行，并让信号总量-1。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><pre><code>1. 我们创建一个semaphore对象，总信号量设置为0，如：dispatch_semaphore_create(0)；
-2. 在异步执行的方法结尾为第一步创建的semaphore对象发一个信号，使它的总信号量加一，如：dispatch_semaphore_signal(semaphore)；
-3. 在需要阻塞的地方加上dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)，DISPATCH_TIME_FOREVER的意思是如果semaphore的信号量一直是0的话，就一直等下去。
-</code></pre><h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">//step 1:创建同步信号量</div><div class="line">dispatch_semaphore_t semaphore=dispatch_semaphore_create(0);</div><div class="line">//step 2:创建请求</div><div class="line">NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];</div><div class="line">    [request setHTTPMethod:@&quot;get&quot;];</div><div class="line">    [request setValue:@&quot;iOS&quot; forHTTPHeaderField:@&quot;User-Agent&quot;];</div><div class="line">//step 3:创建urlsession实例</div><div class="line">NSURLSession *session=[NSURLSession sharedSession];</div><div class="line">//step 4:使用dataTaskWithRequest方法连接服务器</div><div class="line">    NSURLSessionDataTask *task=[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) &#123;</div><div class="line">        if (error) &#123;</div><div class="line">        	//这里处理错误</div><div class="line">        &#125;</div><div class="line">        else&#123;</div><div class="line">         	//这里处理服务器返回的数据</div><div class="line">        &#125;</div><div class="line">        dispatch_semaphore_signal(semaphore);</div><div class="line">    &#125;];</div><div class="line">[task resume];</div><div class="line">dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</div></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> iOS </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> — iOS — 苹果 — iPhone — 同步请求 — iOS7之后的同步请求解决方案 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Mac中使用brew安装php7失败的解决方案]]></title>
       <url>/2017/03/27/Mac%E4%B8%AD%E4%BD%BF%E7%94%A8brew%E5%AE%89%E8%A3%85php7%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
       <content type="html"><![CDATA[<h1 id="Mac中使用brew安装php7失败的解决方案"><a href="#Mac中使用brew安装php7失败的解决方案" class="headerlink" title="Mac中使用brew安装php7失败的解决方案"></a>Mac中使用brew安装php7失败的解决方案</h1><p>​    之前写PHP一直使用mac自带的PHP5.6，看到PHP7的一些特性之后决定尝一下鲜，百度了安装教程之后，发现我使用brew按照教程安装php7还是会出现问题。</p>
