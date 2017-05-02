@@ -3,6 +3,32 @@
   
     
     <entry>
+      <title><![CDATA[ip2long出现负数的解决方案]]></title>
+      <url>/2017/05/02/ip2long%E5%87%BA%E7%8E%B0%E8%B4%9F%E6%95%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　在PHP开发中，有时候会遇到一些需求，例如：获取用户的IP地址，并存到数据库当中。一般做法是将IP地址转变为整型存入数据库当中，至于如何将IP地址转成整型，有很多做法<a href="ip2long、INET_ATON">^1</a>，而我习惯用<code>ip2long</code>这个函数来处理，当然你也可以自己写一个更好的函数。</p>
+<p>　　当然<code>ip2long</code>转化的IP地址并不是很完美，某些地址存在BUG，就是转换后的地址会变成一个负数(原因是溢出了)。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>　　最简单的方法是使用<code>decbin</code>将<code>ip2long</code>的返回值转成二进制，然后再通过<code>bindec</code>将结果转回十进制。(官方也推荐过另一个解决办法，在官方手册中有说明)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?PHP</span></div><div class="line"><span class="keyword">echo</span> bindec(decbin(ip2long($ip)));<span class="comment">//也可以 printf('%u', ip2long($ip));</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> PHP </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 疑难杂症 </tag>
+            
+            <tag> PHP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Hexo添加站内搜索功能]]></title>
       <url>/2017/04/22/Hexo%E6%B7%BB%E5%8A%A0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
       <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>　　今天的主角是<code>hexo-generator-search</code>，这个插件可以帮助我们实现Hexo的站内搜索功能，而且<code>hexo-generator-search</code>安装很简单，只需要一行命令：</p>

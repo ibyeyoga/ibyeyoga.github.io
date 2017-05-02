@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="yoGa's Blog" />
+  <meta name="keywords" content="疑难杂症,PHP," />
 
 
 
@@ -61,12 +61,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="yoGa's Blog">
-<meta property="og:url" content="http://blog.ibye.cn/tags/PHP/index.html">
+<meta name="description" content="前言　　在PHP开发中，有时候会遇到一些需求，例如：获取用户的IP地址，并存到数据库当中。一般做法是将IP地址转变为整型存入数据库当中，至于如何将IP地址转成整型，有很多做法^1，而我习惯用ip2long这个函数来处理，当然你也可以自己写一个更好的函数。
+　　当然ip2long转化的IP地址并不是很完美，某些地址存在BUG，就是转换后的地址会变成一个负数(原因是溢出了)。
+解决方案　　最简单的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ip2long出现负数的解决方案">
+<meta property="og:url" content="http://blog.ibye.cn/2017/05/02/ip2long出现负数的解决方案/index.html">
 <meta property="og:site_name" content="yoGa's Blog">
+<meta property="og:description" content="前言　　在PHP开发中，有时候会遇到一些需求，例如：获取用户的IP地址，并存到数据库当中。一般做法是将IP地址转变为整型存入数据库当中，至于如何将IP地址转成整型，有很多做法^1，而我习惯用ip2long这个函数来处理，当然你也可以自己写一个更好的函数。
+　　当然ip2long转化的IP地址并不是很完美，某些地址存在BUG，就是转换后的地址会变成一个负数(原因是溢出了)。
+解决方案　　最简单的方法">
+<meta property="og:updated_time" content="2017-05-02T15:48:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yoGa's Blog">
+<meta name="twitter:title" content="ip2long出现负数的解决方案">
+<meta name="twitter:description" content="前言　　在PHP开发中，有时候会遇到一些需求，例如：获取用户的IP地址，并存到数据库当中。一般做法是将IP地址转变为整型存入数据库当中，至于如何将IP地址转成整型，有很多做法^1，而我习惯用ip2long这个函数来处理，当然你也可以自己写一个更好的函数。
+　　当然ip2long转化的IP地址并不是很完美，某些地址存在BUG，就是转换后的地址会变成一个负数(原因是溢出了)。
+解决方案　　最简单的方法">
 
 
 
@@ -94,13 +104,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.ibye.cn/tags/PHP/"/>
+  <link rel="canonical" href="http://blog.ibye.cn/2017/05/02/ip2long出现负数的解决方案/"/>
 
 
 
 
 
-  <title> 标签: PHP | yoGa's Blog </title>
+  <title> ip2long出现负数的解决方案 | yoGa's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -125,7 +135,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -263,74 +273,183 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        PHP
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/02/ip2long出现负数的解决方案/" itemprop="url">
-              
-                <span itemprop="name">ip2long出现负数的解决方案</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-02T23:24:08+08:00"
-              content="2017-05-02" >
-          05-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/27/Mac中使用brew安装php7失败的解决方案/" itemprop="url">
-              
-                <span itemprop="name">Mac中使用brew安装php7失败的解决方案</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-27T22:15:11+08:00"
-              content="2017-03-27" >
-          03-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.ibye.cn/2017/05/02/ip2long出现负数的解决方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yoGa Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar-jmy.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yoGa's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ip2long出现负数的解决方案
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-02T23:24:08+08:00">
+                2017-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　在PHP开发中，有时候会遇到一些需求，例如：获取用户的IP地址，并存到数据库当中。一般做法是将IP地址转变为整型存入数据库当中，至于如何将IP地址转成整型，有很多做法<a href="ip2long、INET_ATON">^1</a>，而我习惯用<code>ip2long</code>这个函数来处理，当然你也可以自己写一个更好的函数。</p>
+<p>　　当然<code>ip2long</code>转化的IP地址并不是很完美，某些地址存在BUG，就是转换后的地址会变成一个负数(原因是溢出了)。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>　　最简单的方法是使用<code>decbin</code>将<code>ip2long</code>的返回值转成二进制，然后再通过<code>bindec</code>将结果转回十进制。(官方也推荐过另一个解决办法，在官方手册中有说明)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?PHP</span></div><div class="line"><span class="keyword">echo</span> bindec(decbin(ip2long($ip)));<span class="comment">//也可以 printf('%u', ip2long($ip));</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/疑难杂症/" rel="tag"># 疑难杂症</a>
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/22/Hexo添加站内搜索功能/" rel="next" title="Hexo添加站内搜索功能">
+                <i class="fa fa-chevron-left"></i> Hexo添加站内搜索功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -338,6 +457,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -357,8 +480,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar-jmy.png"
@@ -420,6 +552,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -523,6 +671,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
