@@ -3,6 +3,34 @@
   
     
     <entry>
+      <title><![CDATA[Lumen5.4执行artisan时出现Memcached_Class_Not_Found]]></title>
+      <url>/2017/05/06/Lumen5.4%E6%89%A7%E8%A1%8Cartisan%E6%97%B6%E5%87%BA%E7%8E%B0Memcached_Class_Not_Found/</url>
+      <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　今天安装了Lumen 5.4，使用artisan的时候，出现了异常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[Symfony\Component\Debug\Exception\FatalThrowableError]  </div><div class="line"></div><div class="line">Class &apos;Memcached&apos; not found</div></pre></td></tr></table></figure>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>　　看了一下配置文件<code>.env</code>发现有一项是这样的：<code>CACHE_DRIVER=Memcached</code>。这个配置项说明该项目使用的缓存系统为Memcached。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>　　因为我使用Lumen还在一个学习阶段，暂时并不打算使用Memcached服务，于是乎我将该配置项改为<code>CACHE_DRIVER=file</code>，artisan就恢复正常了。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> PHP </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> PHP </tag>
+            
+            <tag> 疑难杂症 </tag>
+            
+            <tag> Lumen </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[ip2long出现负数的解决方案]]></title>
       <url>/2017/05/02/ip2long%E5%87%BA%E7%8E%B0%E8%B4%9F%E6%95%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
       <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　在PHP开发中，有时候会遇到一些需求，例如：获取用户的IP地址，并存到数据库当中。一般做法是将IP地址转变为整型存入数据库当中，至于如何将IP地址转成整型，有很多做法<a href="ip2long、INET_ATON">^1</a>，而我习惯用<code>ip2long</code>这个函数来处理，当然你也可以自己写一个更好的函数。</p>
@@ -20,9 +48,9 @@
         
         <tags>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> PHP </tag>
+            
+            <tag> 疑难杂症 </tag>
             
         </tags>
         
@@ -148,9 +176,9 @@
         
         <tags>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> PHP </tag>
+            
+            <tag> 疑难杂症 </tag>
             
         </tags>
         
