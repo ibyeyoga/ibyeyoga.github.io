@@ -3,6 +3,43 @@
   
     
     <entry>
+      <title><![CDATA[关于百度Ueditor的一个BUG]]></title>
+      <url>/2018/03/16/%E4%BF%AE%E5%A4%8Dueditor%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84BUG/</url>
+      <content type="html"><![CDATA[<h1 id="关于百度Ueditor的一个BUG"><a href="#关于百度Ueditor的一个BUG" class="headerlink" title="关于百度Ueditor的一个BUG"></a>关于百度Ueditor的一个BUG</h1><blockquote>
+<p>遭遇：百度UE是我目前所在的公司一直都有使用的产品，最近我个人在本机调试的时候发现上传图片发生了异常，但是在服务器上已经存储了该图片，只是UE一直提示上传错误，并且没有将上传成功的图片自动放到编辑内容中去。<br>如图：<br><img src="http://oivwa6p90.bkt.clouddn.com/MD_1519283700" alt="img"></p>
+</blockquote>
+<h6 id="排查了一些时间之后，发现原因出自下面这句代码："><a href="#排查了一些时间之后，发现原因出自下面这句代码：" class="headerlink" title="排查了一些时间之后，发现原因出自下面这句代码："></a>排查了一些时间之后，发现原因出自下面这句代码：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result = body.innerText || body.textContent || &quot;&quot;;</div></pre></td></tr></table></figure>
+<p><strong><em>详细位置在 ueditor.all.js 第24523行 (源码中是在_src\plugins\simpleupload.js第103行) </em></strong></p>
+<blockquote>
+<p>当浏览器装有某些插件的时候，会导致这种方式可能获取的json字符串不是标准的json字符串,例如Json Viewer Awesome，会将页面输出是标准json的字符串进行渲染，会在页面中添加自己的代码。</p>
+</blockquote>
+<p><em>例如一段标准json字符串（在没有装任何json插件的浏览器中）输出如下：</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">如下：</div><div class="line">&#123;</div><div class="line">&quot;state&quot;: &quot;SUCCESS&quot;,</div><div class="line">&quot;url&quot;: &quot;/static/uploads/ue/image/20180222/1519283606115669.jpg&quot;,</div><div class="line">&quot;title&quot;: &quot;1519283606115669.jpg&quot;,</div><div class="line">&quot;original&quot;: &quot;下载.jpg&quot;,</div><div class="line">&quot;type&quot;: &quot;.jpg&quot;,</div><div class="line">&quot;size&quot;: 32920</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><em>但在装有Json Viewer Awesome插件时，输出如下：</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">如下：</div><div class="line">Tree</div><div class="line">Chart</div><div class="line">JSON Input</div><div class="line">&#123;</div><div class="line">&quot;state&quot;: &quot;SUCCESS&quot;,</div><div class="line">&quot;url&quot;: &quot;/static/uploads/ue/image/20180222/1519283606115669.jpg&quot;,</div><div class="line">&quot;title&quot;: &quot;1519283606115669.jpg&quot;,</div><div class="line">&quot;original&quot;: &quot;下载.jpg&quot;,</div><div class="line">&quot;type&quot;: &quot;.jpg&quot;,</div><div class="line">&quot;size&quot;: 32920</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>看到前三行结果就一目了然了</p>
+</blockquote>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><blockquote>
+<p>截取json部分，考虑到其他插件也可能会导致相同的BUG，所以用正则表达式捕获。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//在第24523行(源码中是在_src\plugins\simpleupload.js第103行)下面，添加</div><div class="line">var jsonMatchPattern = /\&#123;(.+?)\&#125;/;</div><div class="line">var jsonMatch = result.replace(/[\r\n]/g,&quot;&quot;).match(jsonMatchPattern);</div><div class="line">result = jsonMatch[0];</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>或者到这里下载修改版源码，自己打包：<br><a href="https://github.com/ibyeyoga/ueditor" target="_blank" rel="external">https://github.com/ibyeyoga/ueditor</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 疑难杂症 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[数据迁移时出现errno:13]]></title>
       <url>/2017/07/15/%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%E6%97%B6%E5%87%BA%E7%8E%B0errno-13/</url>
       <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　最近数据库损坏了，幸好有迁移文件，于是试着恢复数据库结构，结果出现下面图片所示的错误。</p>
@@ -20,11 +57,11 @@
         
         <tags>
             
-            <tag> PHP </tag>
+            <tag> Lumen </tag>
             
             <tag> 疑难杂症 </tag>
             
-            <tag> Lumen </tag>
+            <tag> PHP </tag>
             
             <tag> MySQL </tag>
             
@@ -128,9 +165,9 @@
         
         <tags>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> Lumen </tag>
+            
+            <tag> 疑难杂症 </tag>
             
         </tags>
         
@@ -229,11 +266,11 @@
         
         <tags>
             
-            <tag> PHP </tag>
+            <tag> Lumen </tag>
             
             <tag> 疑难杂症 </tag>
             
-            <tag> Lumen </tag>
+            <tag> PHP </tag>
             
         </tags>
         
@@ -257,9 +294,9 @@
         
         <tags>
             
-            <tag> PHP </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> PHP </tag>
             
         </tags>
         
@@ -385,9 +422,9 @@
         
         <tags>
             
-            <tag> PHP </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> PHP </tag>
             
         </tags>
         
