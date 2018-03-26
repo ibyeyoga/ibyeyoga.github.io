@@ -40,6 +40,74 @@
     </entry>
     
     <entry>
+      <title><![CDATA[webpack简单使用]]></title>
+      <url>/2018/02/26/webpack%E8%AF%A6%E8%A7%A3/</url>
+      <content type="html"><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li>安装node.js 传送门：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></li>
+<li>进入你的项目根目录，然后安装webpack-cli：npm install webpack-cli -D</li>
+<li>安装webpack：npm install webpack</li>
+</ol>
+<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><ol>
+<li>在项目根目录新建文件 webpack.config.js；</li>
+<li>加入如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let path = require(&apos;path&apos;);//引入path库</div><div class="line">module.exports = &#123;</div><div class="line">    entry : &apos;./src/main.js&apos;,//需要被打包的入口文件</div><div class="line">    output: &#123;</div><div class="line">        filename: &quot;bundle.js&quot;,//目标文件名</div><div class="line">        path: path.resolve(&apos;./dist&apos;)//获取目标文件的路径</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>3.修改package.json 中的 scripts 项，添加 <code>&quot;pk&quot;:&quot;webpack&quot;</code> ：</p>
+<p> 4.命令行中执行npm run pk</p>
+<h3 id="多入口打包"><a href="#多入口打包" class="headerlink" title="多入口打包"></a>多入口打包</h3><ol>
+<li>同上</li>
+<li><p>加入如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">let path = require(&apos;path&apos;);</div><div class="line">module.exports = &#123;</div><div class="line">    entry : &#123;</div><div class="line">        main:&apos;./src/main.js&apos;,</div><div class="line">        main1:&apos;./src/main1.js&apos;</div><div class="line">    &#125;,</div><div class="line">    output: &#123;</div><div class="line">        filename: &quot;[name].js&quot;,</div><div class="line">        path: path.resolve(&apos;./dist&apos;)</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>同上</p>
+</li>
+<li>同上</li>
+</ol>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[使用文件锁解决并发问题]]></title>
+      <url>/2018/01/12/%E4%BD%BF%E7%94%A8%E6%96%87%E4%BB%B6%E9%94%81%E8%A7%A3%E5%86%B3%E5%B0%8F%E8%A7%84%E6%A8%A1%E7%9A%84%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>PHP使用文件锁非常简单，通过文件锁可以快速地设计一些并发量不大的临时功能。不过文件锁的缺点非常致命，所以如果有条件的话最好还是用上MQ。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>关键函数原型 <code>bool flock ( resource $handle , int $operation [, int &amp;$wouldblock ] )</code><br>这里解释一下第二个参数</p>
+<ul>
+<li>LOCK_SH 获取共享锁.</li>
+<li>LOCK_EX 获取互斥锁.</li>
+<li>LOCK_UN 释放锁.</li>
+<li>官方文档还说：如果你不想代码块阻塞导致超时，可以加上LOCK_NB.</li>
+</ul>
+<hr>
+</blockquote>
+<h3 id="同步锁"><a href="#同步锁" class="headerlink" title="同步锁"></a>同步锁</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$fp = fopen(&quot;lockfile&quot;, &quot;r&quot;);</div><div class="line">if(flock($fp,LOCK_EX))</div><div class="line">&#123;</div><div class="line">//处理请求，会一直等待</div><div class="line">flock($fp,LOCK_UN);</div><div class="line">&#125;</div><div class="line">fclose($fp);</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<h3 id="异步锁（伪）"><a href="#异步锁（伪）" class="headerlink" title="异步锁（伪）"></a>异步锁（伪）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$fp = fopen(&quot;lockfile&quot;, &quot;r&quot;);</div><div class="line">if(flock($fp,LOCK_EX | LOCK_NB))</div><div class="line">&#123;</div><div class="line">//处理请求</div><div class="line">flock($fp,LOCK_UN);</div><div class="line">&#125;</div><div class="line">else</div><div class="line">&#123;</div><div class="line">echo &quot;如果文件被锁，这里会即时返回信息&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">fclose($fp);</div><div class="line">?&gt;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> PHP </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 疑难杂症 </tag>
+            
+            <tag> PHP </tag>
+            
+            <tag> 并发 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[数据迁移时出现errno:13]]></title>
       <url>/2017/07/15/%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%E6%97%B6%E5%87%BA%E7%8E%B0errno-13/</url>
       <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　最近数据库损坏了，幸好有迁移文件，于是试着恢复数据库结构，结果出现下面图片所示的错误。</p>
