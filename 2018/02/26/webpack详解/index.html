@@ -70,7 +70,7 @@
 在项目根目录新建文件 webpack.config.js；
 加入如下代码：12345678let path = require(&amp;apos;pat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack简单使用">
+<meta property="og:title" content="webpack简单使用（一）">
 <meta property="og:url" content="http://yoga.ibye.cn/2018/02/26/webpack详解/index.html">
 <meta property="og:site_name" content="yoGa's Blog">
 <meta property="og:description" content="安装
@@ -81,9 +81,9 @@
 打包
 在项目根目录新建文件 webpack.config.js；
 加入如下代码：12345678let path = require(&amp;apos;pat">
-<meta property="og:updated_time" content="2018-03-26T14:29:40.973Z">
+<meta property="og:updated_time" content="2018-03-28T14:15:16.428Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack简单使用">
+<meta name="twitter:title" content="webpack简单使用（一）">
 <meta name="twitter:description" content="安装
 安装node.js 传送门：https://nodejs.org/en/
 进入你的项目根目录，然后安装webpack-cli：npm install webpack-cli -D
@@ -125,7 +125,7 @@
 
 
 
-  <title> webpack简单使用 | yoGa's Blog </title>
+  <title> webpack简单使用（一） | yoGa's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -319,7 +319,7 @@
             
             
               
-                webpack简单使用
+                webpack简单使用（一）
               
             
           </h1>
@@ -391,6 +391,21 @@
 </li>
 <li>同上</li>
 </ol>
+<h3 id="语法转换"><a href="#语法转换" class="headerlink" title="语法转换"></a>语法转换</h3><ol>
+<li>安装babel：npm install babel-core –save-dev</li>
+<li>获得es6语法：npm install babel-preset-es2015 –save-dev (es7:babel-preset-stage-0)</li>
+<li><p>新建.babelrc文件，键入：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">    &#123;</div><div class="line">  &quot;presets&quot;: [&quot;es2015&quot;]//es7的话是stage-0，如此类推</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在webpack.config.js上配置module项</p>
+<ul>
+<li>例：匹配所有js文件，使用babel-loader转义，排除node_modules文件夹<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">module: &#123;</div><div class="line">       rules: [</div><div class="line">           &#123;test:/\.js$/, use: &apos;babel-loader&apos;,exclude:/node_modules/&#125;</div><div class="line">       ]</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>进行代码生成</p>
+</li>
+</ol>
 
       
     </div>
@@ -460,8 +475,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/16/修复ueditor上传文件时出现的BUG/" rel="prev" title="关于百度Ueditor的一个BUG">
-                关于百度Ueditor的一个BUG <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/12/webpack简单使用（二）/" rel="prev" title="webpack简单使用（二）">
+                webpack简单使用（二） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -534,7 +549,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -556,7 +571,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -591,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包"><span class="nav-number">2.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多入口打包"><span class="nav-number">3.</span> <span class="nav-text">多入口打包</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包"><span class="nav-number">2.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多入口打包"><span class="nav-number">3.</span> <span class="nav-text">多入口打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法转换"><span class="nav-number">4.</span> <span class="nav-text">语法转换</span></a></li></ol></div>
             
 
           </div>

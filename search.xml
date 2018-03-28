@@ -3,6 +3,60 @@
   
     
     <entry>
+      <title><![CDATA[webpack简单使用（三）]]></title>
+      <url>/2018/03/16/webpack%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/</url>
+      <content type="html"><![CDATA[<h3 id="插件使用"><a href="#插件使用" class="headerlink" title="插件使用"></a>插件使用</h3><blockquote>
+<p>将打包后的js自动引入到html文件中</p>
+</blockquote>
+<ol>
+<li><p>安装所需要的依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install html-webpack-plugin --save-dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>在webpack.config.js中添加一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let htmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>在根目录中新建一个html文件，名字自取，这里叫template.html</p>
+</li>
+<li><p>在webpack.config.js中添加配置项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">plugins: [</div><div class="line">        new HtmlWebpackPlugin(&#123;</div><div class="line">            template:&apos;./src/template.html&apos;,//模板</div><div class="line">            filename:&apos;index.html&apos;//输出的文件名</div><div class="line">        &#125;)</div><div class="line">    ]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="自动打包"><a href="#自动打包" class="headerlink" title="自动打包"></a>自动打包</h3><blockquote>
+<p>不用每次都手动运行脚本</p>
+</blockquote>
+<ol>
+<li><p>安装所需要的依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack-dev-server --save-dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>package.json中scripts配置项中新建一项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;dev&quot;:&quot;webpack-dev-server&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行脚本npm run dev</p>
+<blockquote>
+<p>默认地址是<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a></p>
+</blockquote>
+</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> webpack </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[关于百度Ueditor的一个BUG]]></title>
       <url>/2018/03/16/%E4%BF%AE%E5%A4%8Dueditor%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84BUG/</url>
       <content type="html"><![CDATA[<h1 id="关于百度Ueditor的一个BUG"><a href="#关于百度Ueditor的一个BUG" class="headerlink" title="关于百度Ueditor的一个BUG"></a>关于百度Ueditor的一个BUG</h1><blockquote>
@@ -40,7 +94,53 @@
     </entry>
     
     <entry>
-      <title><![CDATA[webpack简单使用]]></title>
+      <title><![CDATA[webpack简单使用（二）]]></title>
+      <url>/2018/03/12/webpack%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+      <content type="html"><![CDATA[<h3 id="打包css"><a href="#打包css" class="headerlink" title="打包css"></a>打包css</h3><ol>
+<li><p>安装所需要的依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install css-loader style-loader --save-dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>在webpack.config.js中添加规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rules: [</div><div class="line">    &#123;test:/\.js$/, use: &apos;babel-loader&apos;,exclude:/node_modules/&#125;,//这条是上一篇的内容</div><div class="line">    &#123;test:/\.css$/,use:[&apos;style-loader&apos;,&apos;css-loader&apos;]&#125;//这条是新增的规则</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+<li><p>inpm run 打包脚本</p>
+</li>
+</ol>
+<h3 id="打包less"><a href="#打包less" class="headerlink" title="打包less"></a>打包less</h3><ol>
+<li><p>安装所需要的依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install less less-loader --save-dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rules: [</div><div class="line">            &#123;test:/\.js$/, use: &apos;babel-loader&apos;,exclude:/node_modules/&#125;,</div><div class="line">            &#123;test:/\.css$/,use:[&apos;style-loader&apos;,&apos;css-loader&apos;]&#125;,</div><div class="line">            &#123;test:/\.less$/,use:[&apos;style-loader&apos;,&apos;css-loader&apos;,&apos;less-loader&apos;]&#125;</div><div class="line">        ]</div></pre></td></tr></table></figure>
+</li>
+<li><p>npm run 打包脚本</p>
+</li>
+</ol>
+<h3 id="打包文件"><a href="#打包文件" class="headerlink" title="打包文件"></a>打包文件</h3><ol>
+<li><p>安装所需要的依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install file-loader url-loader --save-dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加规则（图片为例，1KB以下的图片转成base64，大于1KB的使用图片）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">rules: [</div><div class="line">            &#123;test:/\.js$/, use: &apos;babel-loader&apos;,exclude:/node_modules/&#125;,</div><div class="line">            &#123;test:/\.css$/,use:[&apos;style-loader&apos;,&apos;css-loader&apos;]&#125;,</div><div class="line">            &#123;test:/\.less$/,use:[&apos;style-loader&apos;,&apos;css-loader&apos;,&apos;less-loader&apos;]&#125;,</div><div class="line">            &#123;test:/\.(jpg|png|gif)$/,use:[&apos;url-loader?limit=1024&apos;]&#125;</div><div class="line">        ]</div></pre></td></tr></table></figure>
+</li>
+<li><p>npm run 打包脚本</p>
+</li>
+</ol>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> webpack </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[webpack简单使用（一）]]></title>
       <url>/2018/02/26/webpack%E8%AF%A6%E8%A7%A3/</url>
       <content type="html"><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
 <li>安装node.js 传送门：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></li>
@@ -62,6 +162,21 @@
 <li><p>同上</p>
 </li>
 <li>同上</li>
+</ol>
+<h3 id="语法转换"><a href="#语法转换" class="headerlink" title="语法转换"></a>语法转换</h3><ol>
+<li>安装babel：npm install babel-core –save-dev</li>
+<li>获得es6语法：npm install babel-preset-es2015 –save-dev (es7:babel-preset-stage-0)</li>
+<li><p>新建.babelrc文件，键入：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">    &#123;</div><div class="line">  &quot;presets&quot;: [&quot;es2015&quot;]//es7的话是stage-0，如此类推</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在webpack.config.js上配置module项</p>
+<ul>
+<li>例：匹配所有js文件，使用babel-loader转义，排除node_modules文件夹<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">module: &#123;</div><div class="line">       rules: [</div><div class="line">           &#123;test:/\.js$/, use: &apos;babel-loader&apos;,exclude:/node_modules/&#125;</div><div class="line">       ]</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>进行代码生成</p>
+</li>
 </ol>
 ]]></content>
       
