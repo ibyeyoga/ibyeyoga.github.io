@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="yoGa's Blog" />
+  <meta name="keywords" content="消息队列,高并发," />
 
 
 
@@ -61,37 +61,26 @@
 
 
 
-<meta name="description" content="安装
-安装node.js 传送门：https://nodejs.org/en/
-进入你的项目根目录，然后安装webpack-cli：npm install webpack-cli -D
-安装webpack：npm install webpack
+<meta name="description" content="在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。
 
-打包
-在项目根目录新建文件 webpack.config.js；
-加入如下代码：12345678let path = require(&amp;apos;pat">
+一般一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就已经设置好了，所以只要不能进入队列的用户，都可以返回抢票失败。我在公司的时候也是通过这种思路去解决。这样做有好也有不好，是否采用这种做法根据需求">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack简单使用（一）">
-<meta property="og:url" content="http://yoga.ibye.cn/2018/02/26/webpack详解/index.html">
+<meta property="og:title" content="如何利用消息队列处理秒杀或者抢票需求">
+<meta property="og:url" content="http://yoga.ibye.cn/2018/03/18/利用消息队列解决秒杀系统并发问题/index.html">
 <meta property="og:site_name" content="yoGa's Blog">
-<meta property="og:description" content="安装
-安装node.js 传送门：https://nodejs.org/en/
-进入你的项目根目录，然后安装webpack-cli：npm install webpack-cli -D
-安装webpack：npm install webpack
+<meta property="og:description" content="在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。
 
-打包
-在项目根目录新建文件 webpack.config.js；
-加入如下代码：12345678let path = require(&amp;apos;pat">
-<meta property="og:updated_time" content="2018-03-28T14:15:16.428Z">
+一般一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就已经设置好了，所以只要不能进入队列的用户，都可以返回抢票失败。我在公司的时候也是通过这种思路去解决。这样做有好也有不好，是否采用这种做法根据需求">
+<meta property="og:image" content="http://yoga.ibye.cn/images/pasted-3.png">
+<meta property="og:image" content="http://yoga.ibye.cn/images/pasted-2.png">
+<meta property="og:image" content="http://yoga.ibye.cn/images/pasted-1.png">
+<meta property="og:updated_time" content="2018-04-20T12:52:00.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack简单使用（一）">
-<meta name="twitter:description" content="安装
-安装node.js 传送门：https://nodejs.org/en/
-进入你的项目根目录，然后安装webpack-cli：npm install webpack-cli -D
-安装webpack：npm install webpack
+<meta name="twitter:title" content="如何利用消息队列处理秒杀或者抢票需求">
+<meta name="twitter:description" content="在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。
 
-打包
-在项目根目录新建文件 webpack.config.js；
-加入如下代码：12345678let path = require(&amp;apos;pat">
+一般一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就已经设置好了，所以只要不能进入队列的用户，都可以返回抢票失败。我在公司的时候也是通过这种思路去解决。这样做有好也有不好，是否采用这种做法根据需求">
+<meta name="twitter:image" content="http://yoga.ibye.cn/images/pasted-3.png">
 
 
 
@@ -119,13 +108,13 @@
 
 
 
-  <link rel="canonical" href="http://yoga.ibye.cn/2018/02/26/webpack详解/"/>
+  <link rel="canonical" href="http://yoga.ibye.cn/2018/03/18/利用消息队列解决秒杀系统并发问题/"/>
 
 
 
 
 
-  <title> webpack简单使用（一） | yoGa's Blog </title>
+  <title> 如何利用消息队列处理秒杀或者抢票需求 | yoGa's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -298,7 +287,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoga.ibye.cn/2018/02/26/webpack详解/">
+    <link itemprop="mainEntityOfPage" href="http://yoga.ibye.cn/2018/03/18/利用消息队列解决秒杀系统并发问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yoGa Lee">
@@ -319,7 +308,7 @@
             
             
               
-                webpack简单使用（一）
+                如何利用消息队列处理秒杀或者抢票需求
               
             
           </h1>
@@ -334,8 +323,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T22:12:00+08:00">
-                2018-02-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-18T20:09:00+08:00">
+                2018-03-18
               </time>
             
 
@@ -344,6 +333,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -370,42 +381,19 @@
       
 
       
-        <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
-<li>安装node.js 传送门：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></li>
-<li>进入你的项目根目录，然后安装webpack-cli：npm install webpack-cli -D</li>
-<li>安装webpack：npm install webpack</li>
-</ol>
-<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><ol>
-<li>在项目根目录新建文件 webpack.config.js；</li>
-<li>加入如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let path = require(&apos;path&apos;);//引入path库</div><div class="line">module.exports = &#123;</div><div class="line">    entry : &apos;./src/main.js&apos;,//需要被打包的入口文件</div><div class="line">    output: &#123;</div><div class="line">        filename: &quot;bundle.js&quot;,//目标文件名</div><div class="line">        path: path.resolve(&apos;./dist&apos;)//获取目标文件的路径</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>3.修改package.json 中的 scripts 项，添加 <code>&quot;pk&quot;:&quot;webpack&quot;</code> ：</p>
-<p> 4.命令行中执行npm run pk</p>
-<h3 id="多入口打包"><a href="#多入口打包" class="headerlink" title="多入口打包"></a>多入口打包</h3><ol>
-<li>同上</li>
-<li><p>加入如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">let path = require(&apos;path&apos;);</div><div class="line">module.exports = &#123;</div><div class="line">    entry : &#123;</div><div class="line">        main:&apos;./src/main.js&apos;,</div><div class="line">        main1:&apos;./src/main1.js&apos;</div><div class="line">    &#125;,</div><div class="line">    output: &#123;</div><div class="line">        filename: &quot;[name].js&quot;,</div><div class="line">        path: path.resolve(&apos;./dist&apos;)</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>同上</p>
-</li>
-<li>同上</li>
-</ol>
-<h3 id="语法转换"><a href="#语法转换" class="headerlink" title="语法转换"></a>语法转换</h3><ol>
-<li>安装babel：npm install babel-core –save-dev</li>
-<li>获得es6语法：npm install babel-preset-es2015 –save-dev (es7:babel-preset-stage-0)</li>
-<li><p>新建.babelrc文件，键入：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">    &#123;</div><div class="line">  &quot;presets&quot;: [&quot;es2015&quot;]//es7的话是stage-0，如此类推</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在webpack.config.js上配置module项</p>
-<ul>
-<li>例：匹配所有js文件，使用babel-loader转义，排除node_modules文件夹<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">module: &#123;</div><div class="line">       rules: [</div><div class="line">           &#123;test:/\.js$/, use: &apos;babel-loader&apos;,exclude:/node_modules/&#125;</div><div class="line">       ]</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>进行代码生成</p>
-</li>
-</ol>
+        <blockquote>
+<p>在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。</p>
+<hr>
+<h3 id="一般"><a href="#一般" class="headerlink" title="一般"></a>一般</h3><p>一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就已经设置好了，所以只要不能进入队列的用户，都可以返回抢票失败。我在公司的时候也是通过这种思路去解决。这样做有好也有不好，是否采用这种做法根据需求而定。</p>
+<hr>
+<p>我这里还有一种方法，就是当发放票券的人是生产者，抢票的用户是消费者，那么我一开始就往队列中塞进一定数量的票，而活动开始的时候，用户就开始消费，如果消费成功就将票券入库，如果失败就重新放回队列中去。两种做法各有千秋，还是那句老话，根据需求而定。下面代码主要介绍我这种做法。</p>
+</blockquote>
+<h4 id="关键代码如下："><a href="#关键代码如下：" class="headerlink" title="关键代码如下："></a>关键代码如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">GrabCore.php</div><div class="line">&lt;?php</div><div class="line">namespace yoga\grabticket;</div><div class="line">class GrabCore</div><div class="line">&#123;</div><div class="line">    protected $port = 61613;</div><div class="line">    protected $host = &apos;tcp://localhost&apos;;</div><div class="line">    protected $username = &apos;admin&apos;;</div><div class="line">    protected $password = &apos;admin&apos;;</div><div class="line"></div><div class="line">    public $stomp;</div><div class="line">    public $queue = &apos;/queue/activity/ticket-1&apos;;</div><div class="line"></div><div class="line">    private static $_instance = null;</div><div class="line"></div><div class="line">    static  public function getInstance()&#123;</div><div class="line">        if(!(self::$_instance instanceof Grabber))&#123;</div><div class="line">            self::$_instance = new Grabber();</div><div class="line">            $uri = self::$_instance-&gt;host . &apos;:&apos; . self::$_instance-&gt;port;</div><div class="line">            try&#123;</div><div class="line">                self::$_instance-&gt;stomp = new \Stomp($uri, self::$_instance-&gt;username, self::$_instance-&gt;password);</div><div class="line">                self::$_instance-&gt;stomp-&gt;setReadTimeout(1);</div><div class="line">            &#125;</div><div class="line">            catch (\StompException $e)&#123;</div><div class="line">                echo &apos;Error: &apos; . $e-&gt;getMessage();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return self::$_instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private function __clone()</div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static function close()&#123;</div><div class="line">        $stomp = self::getInstance()-&gt;stomp;</div><div class="line">        unset($stomp);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    function __destruct()</div><div class="line">    &#123;</div><div class="line">        self::close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">Grabber.php</div><div class="line">&lt;?php</div><div class="line">namespace yoga\grabticket;</div><div class="line">class Grabber extends GrabCore</div><div class="line">&#123;</div><div class="line">    public static function grab(\Closure $success, \Closure $failure, $_queue = null)&#123;</div><div class="line">        $stomp = self::getInstance()-&gt;stomp;</div><div class="line">        $queue = $_queue ?? self::getInstance()-&gt;queue;</div><div class="line">        $isSubscribe = $stomp-&gt;subscribe($queue);</div><div class="line"></div><div class="line">        try&#123;</div><div class="line">            if($isSubscribe)&#123;</div><div class="line">                if($stomp-&gt;hasFrame())&#123;</div><div class="line">                    $frame = $stomp-&gt;readFrame();</div><div class="line">                    if($stomp-&gt;ack($frame))&#123;</div><div class="line">                        //成功处理操作</div><div class="line">                        $flag = $success($frame-&gt;body);</div><div class="line">                        //如果抢票失败，再放回队列</div><div class="line">                        if(!$flag)&#123;</div><div class="line">                            $tMark = &apos;re&apos;;</div><div class="line">                            $stomp-&gt;begin(&apos;re&apos;);</div><div class="line">                            $stomp-&gt;send($queue, $frame-&gt;body);</div><div class="line">                            if($stomp-&gt;commit($tMark))&#123;</div><div class="line">                                echo &apos;有一张票券入库异常，已经插回队列。&apos;;</div><div class="line">                            &#125;</div><div class="line">                            else&#123;</div><div class="line">                                $stomp-&gt;abort($tMark);</div><div class="line">                                echo &apos;插入队列异常：&apos; . $frame-&gt;body;</div><div class="line">                            &#125;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                    else&#123;</div><div class="line">                        $failure(&apos;没抢到票哦，请稍后再试试~&apos;);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                else&#123;</div><div class="line">                    $failure(&apos;没有票了~&apos;);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        catch (\Exception $exception)&#123;</div><div class="line">            $failure($exception-&gt;getMessage());</div><div class="line">        &#125;</div><div class="line">        finally&#123;</div><div class="line">            $stomp-&gt;unsubscribe($queue);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">TicketProducer.php</div><div class="line">&lt;?php</div><div class="line">namespace yoga\grabticket;</div><div class="line">class TicketProducer extends GrabCore</div><div class="line">&#123;</div><div class="line">    public static function provide($number,$_queue = null)&#123;</div><div class="line">        $tMark = &apos;batch&apos;;</div><div class="line">        $stomp = self::getInstance()-&gt;stomp;</div><div class="line">        $queue = $_queue ?? self::getInstance()-&gt;queue;</div><div class="line">        $stomp-&gt;begin($tMark);</div><div class="line">        for($i = 1; $i &lt;= $number; $i++)&#123;</div><div class="line">            $stomp-&gt;send($queue,self::generateTicket($i), [</div><div class="line">                &apos;persistent&apos; =&gt; &apos;true&apos;</div><div class="line">            ]);</div><div class="line">        &#125;</div><div class="line">        if($stomp-&gt;commit($tMark))&#123;</div><div class="line">            echo &quot;生成 $number 张票券成功！&quot;;</div><div class="line">        &#125;</div><div class="line">        else&#123;</div><div class="line">            $stomp-&gt;abort($tMark);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static function generateTicket($seed)&#123;</div><div class="line">        $groupCode = [&apos;A&apos;,&apos;B&apos;,&apos;C&apos;];</div><div class="line">        return json_encode([</div><div class="line">            &apos;tno&apos; =&gt; $groupCode[array_rand($groupCode,1)] . substr(microtime(), 3,7) . random_int(1, 99) . $seed</div><div class="line">        ]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>生成票券：<code>TicketProducer::provide(10);</code><br><img src="/images/pasted-3.png" alt="upload successful"><br>抢票：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Grabber::grab(function($msgBody)&#123;</div><div class="line">	//成功操作，我这里是输出用户抢票情况</div><div class="line">&#125;,function($error)&#123;</div><div class="line">   echo $error;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p><img src="/images/pasted-2.png" alt="upload successful"></p>
+<p><img src="/images/pasted-1.png" alt="upload successful"></p>
 
       
     </div>
@@ -456,6 +444,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/消息队列/" rel="tag"># 消息队列</a>
+          
+            <a href="/tags/高并发/" rel="tag"># 高并发</a>
+          
+        </div>
+      
 
       
         
@@ -465,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/12/使用文件锁解决小规模的并发问题/" rel="next" title="使用文件锁解决并发问题">
-                <i class="fa fa-chevron-left"></i> 使用文件锁解决并发问题
+              <a href="/2018/03/16/webpack简单使用（三）/" rel="next" title="webpack简单使用（三）">
+                <i class="fa fa-chevron-left"></i> webpack简单使用（三）
               </a>
             
           </div>
@@ -475,8 +471,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/12/webpack简单使用（二）/" rel="prev" title="webpack简单使用（二）">
-                webpack简单使用（二） <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/12/Shiro跨域问题解决/" rel="prev" title="Shiro跨域问题解决">
+                Shiro跨域问题解决 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -606,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包"><span class="nav-number">2.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多入口打包"><span class="nav-number">3.</span> <span class="nav-text">多入口打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法转换"><span class="nav-number">4.</span> <span class="nav-text">语法转换</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般"><span class="nav-number">1.</span> <span class="nav-text">一般</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关键代码如下："><span class="nav-number">1.1.</span> <span class="nav-text">关键代码如下：</span></a></li></ol></li></ol></div>
             
 
           </div>
