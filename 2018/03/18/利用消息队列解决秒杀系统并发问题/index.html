@@ -61,25 +61,31 @@
 
 
 
-<meta name="description" content="场景在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。
+<meta name="description" content="注：更新至2018年4月21日，已经将源码放到github中，https://github.com/ibyeyoga/GrabTicket
 
-思路一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就已经设置好了，所以只要不能进入队列的用户，都可以返回抢票失败。我在公司的时候也是通过这种思路去解决。这样做有好也有不好，是否采用这种做法根据">
+场景在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。
+
+思路一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何利用消息队列处理秒杀或者抢票需求">
 <meta property="og:url" content="http://yoga.ibye.cn/2018/03/18/利用消息队列解决秒杀系统并发问题/index.html">
 <meta property="og:site_name" content="yoGa's Blog">
-<meta property="og:description" content="场景在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。
+<meta property="og:description" content="注：更新至2018年4月21日，已经将源码放到github中，https://github.com/ibyeyoga/GrabTicket
 
-思路一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就已经设置好了，所以只要不能进入队列的用户，都可以返回抢票失败。我在公司的时候也是通过这种思路去解决。这样做有好也有不好，是否采用这种做法根据">
+场景在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。
+
+思路一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就">
 <meta property="og:image" content="http://yoga.ibye.cn/images/pasted-3.png">
 <meta property="og:image" content="http://yoga.ibye.cn/images/pasted-2.png">
 <meta property="og:image" content="http://yoga.ibye.cn/images/pasted-1.png">
-<meta property="og:updated_time" content="2018-04-20T13:33:34.918Z">
+<meta property="og:updated_time" content="2018-04-21T08:33:08.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何利用消息队列处理秒杀或者抢票需求">
-<meta name="twitter:description" content="场景在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。
+<meta name="twitter:description" content="注：更新至2018年4月21日，已经将源码放到github中，https://github.com/ibyeyoga/GrabTicket
 
-思路一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就已经设置好了，所以只要不能进入队列的用户，都可以返回抢票失败。我在公司的时候也是通过这种思路去解决。这样做有好也有不好，是否采用这种做法根据">
+场景在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。
+
+思路一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就">
 <meta name="twitter:image" content="http://yoga.ibye.cn/images/pasted-3.png">
 
 
@@ -381,7 +387,8 @@
       
 
       
-        <blockquote>
+        <p>注：更新至2018年4月21日，已经将源码放到github中，<a href="https://github.com/ibyeyoga/GrabTicket" target="_blank" rel="external">https://github.com/ibyeyoga/GrabTicket</a></p>
+<blockquote>
 <h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>在高并发应用中，一个非常常见的案例就是——“秒杀”或者“抢票”，它们虽然名字不同，但是本质是一样的。可以用相同的解决方法去解决它们。</p>
 <hr>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>一般思路是通过将用户的请求放到预先设定好的定长的队列中去，然后等系统一个一个地去处理，当然一开始这个队列的最大值就已经设置好了，所以只要不能进入队列的用户，都可以返回抢票失败。我在公司的时候也是通过这种思路去解决。这样做有好也有不好，是否采用这种做法根据需求而定。</p>
