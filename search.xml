@@ -3,6 +3,24 @@
   
     
     <entry>
+      <title><![CDATA[解决php7.1中yii2-redis-session不能使用的问题]]></title>
+      <url>/2018/05/24/%E8%A7%A3%E5%86%B3php7-1%E4%B8%ADyii-redis-session%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><blockquote>
+<p>yii2中使用redis作为session存放点，已经配置好redis，而且redis使用一切正常，但是session的任何操作都不能正常使用。<br>配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&apos;session&apos; =&gt; [</div><div class="line">        &apos;class&apos;=&gt;&apos;yii\redis\Session&apos;,</div><div class="line">        &apos;redis&apos; =&gt; &apos;redis&apos;</div><div class="line">       ]</div></pre></td></tr></table></figure></p>
+<p>没有抛出错误，但是查看日志发现:<code>session_start(): Failed to read session data: user</code></p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>php 7.1.9<br>apache 2.4</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>是php7.1导致的，下面是官方解释：(<code>http://php.net/manual/en/sessionhandlerinterface.read.php</code>)</p>
+</blockquote>
+<p><img src="\images\pasted-4.png" alt="图片"></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><blockquote>
+<p>重写yii2-redis中的Session.php<br>readSession方法(115行~120行)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public function readSession($id)</div><div class="line">    &#123;</div><div class="line">        $data = $this-&gt;redis-&gt;executeCommand(&apos;GET&apos;, [$this-&gt;calculateKey($id)]);</div><div class="line"></div><div class="line">        return $data === false || $data === null ? &apos;&apos; : $data;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></blockquote>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Shiro跨域问题解决]]></title>
       <url>/2018/04/12/Shiro%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</url>
       <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><blockquote>

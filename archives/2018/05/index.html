@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP,疑难杂症,并发," />
+  <meta name="keywords" content="yoGa's Blog" />
 
 
 
@@ -61,40 +61,12 @@
 
 
 
-<meta name="description" content="前言
-PHP使用文件锁非常简单，通过文件锁可以快速地设计一些并发量不大的临时功能。不过文件锁的缺点非常致命，所以如果有条件的话最好还是用上MQ。
-
-
-
-关键函数原型 bool flock ( resource $handle , int $operation [, int &amp;amp;$wouldblock ] )这里解释一下第二个参数
-
-LOCK_SH 获取共享锁.
-LOCK_EX 获取互斥锁.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="使用文件锁解决并发问题">
-<meta property="og:url" content="http://yoga.ibye.cn/2018/01/12/使用文件锁解决小规模的并发问题/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="yoGa's Blog">
+<meta property="og:url" content="http://yoga.ibye.cn/archives/2018/05/index.html">
 <meta property="og:site_name" content="yoGa's Blog">
-<meta property="og:description" content="前言
-PHP使用文件锁非常简单，通过文件锁可以快速地设计一些并发量不大的临时功能。不过文件锁的缺点非常致命，所以如果有条件的话最好还是用上MQ。
-
-
-
-关键函数原型 bool flock ( resource $handle , int $operation [, int &amp;amp;$wouldblock ] )这里解释一下第二个参数
-
-LOCK_SH 获取共享锁.
-LOCK_EX 获取互斥锁.">
-<meta property="og:updated_time" content="2018-03-26T14:51:32.951Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用文件锁解决并发问题">
-<meta name="twitter:description" content="前言
-PHP使用文件锁非常简单，通过文件锁可以快速地设计一些并发量不大的临时功能。不过文件锁的缺点非常致命，所以如果有条件的话最好还是用上MQ。
-
-
-
-关键函数原型 bool flock ( resource $handle , int $operation [, int &amp;amp;$wouldblock ] )这里解释一下第二个参数
-
-LOCK_SH 获取共享锁.
-LOCK_EX 获取互斥锁.">
+<meta name="twitter:title" content="yoGa's Blog">
 
 
 
@@ -122,13 +94,13 @@ LOCK_EX 获取互斥锁.">
 
 
 
-  <link rel="canonical" href="http://yoga.ibye.cn/2018/01/12/使用文件锁解决小规模的并发问题/"/>
+  <link rel="canonical" href="http://yoga.ibye.cn/archives/2018/05/"/>
 
 
 
 
 
-  <title> 使用文件锁解决并发问题 | yoGa's Blog </title>
+  <title> 归档 | yoGa's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -153,7 +125,7 @@ LOCK_EX 获取互斥锁.">
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,223 +263,66 @@ LOCK_EX 获取互斥锁.">
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoga.ibye.cn/2018/01/12/使用文件锁解决小规模的并发问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yoGa Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yoGa's Blog">
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 19 篇日志。 继续努力。
     </span>
 
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                使用文件锁解决并发问题
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T20:32:00+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
 
       
       
-
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>PHP使用文件锁非常简单，通过文件锁可以快速地设计一些并发量不大的临时功能。不过文件锁的缺点非常致命，所以如果有条件的话最好还是用上MQ。</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>关键函数原型 <code>bool flock ( resource $handle , int $operation [, int &amp;$wouldblock ] )</code><br>这里解释一下第二个参数</p>
-<ul>
-<li>LOCK_SH 获取共享锁.</li>
-<li>LOCK_EX 获取互斥锁.</li>
-<li>LOCK_UN 释放锁.</li>
-<li>官方文档还说：如果你不想代码块阻塞导致超时，可以加上LOCK_NB.</li>
-</ul>
-<hr>
-</blockquote>
-<h3 id="同步锁"><a href="#同步锁" class="headerlink" title="同步锁"></a>同步锁</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$fp = fopen(&quot;lockfile&quot;, &quot;r&quot;);</div><div class="line">if(flock($fp,LOCK_EX))</div><div class="line">&#123;</div><div class="line">//处理请求，会一直等待</div><div class="line">flock($fp,LOCK_UN);</div><div class="line">&#125;</div><div class="line">fclose($fp);</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
-<h3 id="异步锁（伪）"><a href="#异步锁（伪）" class="headerlink" title="异步锁（伪）"></a>异步锁（伪）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$fp = fopen(&quot;lockfile&quot;, &quot;r&quot;);</div><div class="line">if(flock($fp,LOCK_EX | LOCK_NB))</div><div class="line">&#123;</div><div class="line">//处理请求</div><div class="line">flock($fp,LOCK_UN);</div><div class="line">&#125;</div><div class="line">else</div><div class="line">&#123;</div><div class="line">echo &quot;如果文件被锁，这里会即时返回信息&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">fclose($fp);</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
-      
-    </div>
 
-    <div>
       
         
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-
-<div>
-  
-    
-<div style="text-align:center;color: #ccc;font-size:14px;">
------- 本文结束 ------</div>
-<br/>
-<div style="border: 1px solid black">
-<div style="margin-left:10px">
-<span style="font-weight:blod">版权声明</span>
-<br/>
-<p style="font-size: 10px;line-height: 30px"><a href="http://yoga.ibye.cn" style="color:#258FC6">yoGa's Blog</a> by <a href="http://yoga.ibye.cn" style="color:#258FC6">yoga lee</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
-由<a href="http://yoga.ibye.cn" style="color:#258FC6">yoga lee</a>创作并维护的<a href="http://yoga.ibye.cn" style="color:#258FC6">yoGa's Blog</a>采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
-本文首发于<a href="http://yoga.ibye.cn" style="color:#258FC6">yoGa's Blog</a>（ <a href="http://yoga.ibye.cn" style="color:#258FC6">http://yoga.ibye.cn</a> ），版权所有，若需转载请注明出处，谢谢支持。</p>
-</div>
-</div>
-
-  
-</div>
-
-
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/PHP/" rel="tag"># PHP</a>
-          
-            <a href="/tags/疑难杂症/" rel="tag"># 疑难杂症</a>
-          
-            <a href="/tags/并发/" rel="tag"># 并发</a>
-          
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
         </div>
       
+      
 
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
+            <a class="post-title-link" href="/2018/05/24/解决php7-1中yii-redis-session不能使用的问题/" itemprop="url">
+              
+                <span itemprop="name">解决php7.1中yii2-redis-session不能使用的问题</span>
+              
+            </a>
+        
+      </h1>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/07/15/数据迁移时出现errno-13/" rel="next" title="数据迁移时出现errno:13">
-                <i class="fa fa-chevron-left"></i> 数据迁移时出现errno:13
-              </a>
-            
-          </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-05-24T22:17:16+08:00"
+              content="2018-05-24" >
+          05-24
+        </time>
+      </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/26/webpack详解/" rel="prev" title="webpack简单使用（一）">
-                webpack简单使用（一） <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+    
+
+  </section>
+
+  
+
 
           
           </div>
@@ -515,10 +330,6 @@ LOCK_EX 获取互斥锁.">
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -538,17 +349,8 @@ LOCK_EX 获取互斥锁.">
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -610,22 +412,6 @@ LOCK_EX 获取互斥锁.">
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步锁"><span class="nav-number">1.1.</span> <span class="nav-text">同步锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步锁（伪）"><span class="nav-number">1.2.</span> <span class="nav-text">异步锁（伪）</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -729,9 +515,11 @@ LOCK_EX 获取互斥锁.">
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   
